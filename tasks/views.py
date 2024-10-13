@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 from .models import Task
 from .serializers import TaskSerializer
 
@@ -10,6 +12,9 @@ class TaskViewSet(viewsets.ModelViewSet):
     """
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticated]  # Require authentication for all task actions
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]  # Add filter backends
+    filterset_fields = ['status', 'priority', 'due_date']  # Fields to filter by
+    ordering_fields = ['due_date', 'priority']  # Fields to order by
 
     def get_queryset(self):
         # Only return tasks that belong to the currently authenticated user
