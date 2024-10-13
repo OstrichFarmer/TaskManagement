@@ -1,3 +1,20 @@
 from django.shortcuts import render
+from rest_framework import viewsets, permissions
+from .models import Task
+from .serializers import TaskSerializer
 
-# Create your views here.
+class TaskViewSet(viewsets.ModelViewSet):
+    """
+    A viewset that provides the standard actions
+    for creating, reading, updating, and deleting tasks.
+    """
+    serializer_class = TaskSerializer
+    permission_classes = [permissions.IsAuthenticated]  # Require authentication for all task actions
+
+    def get_queryset(self):
+        # Only return tasks that belong to the currently authenticated user
+        return Task.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        # Automatically associate the logged-in user with the created task
+        serializer.save(user=self.request.user)
