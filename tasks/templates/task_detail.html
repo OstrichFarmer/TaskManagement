@@ -1,0 +1,18 @@
+{% extends 'tasks/base.html' %} {% block title %}Task Details{% endblock %} {%
+block content %}
+<h2>{{ task.title }}</h2>
+
+<p>Description: {{ task.description }}</p>
+<p>Due Date: {{ task.due_date }}</p>
+<p>Priority: {{ task.priority }}</p>
+<p>Status: {{ task.status }}</p>
+{% if task.status == 'Completed' %}
+<p>Completed At: {{ task.completed_at }}</p>
+{% endif %}
+
+<a href="{% url 'update_task' task.id %}">Edit Task</a>
+<form method="POST" action="{% url 'delete_task' task.id %}">
+  {% csrf_token %}
+  <button type="submit">Delete Task</button>
+</form>
+{% endblock %}

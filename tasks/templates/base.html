@@ -1,0 +1,31 @@
+<!-- tasks/templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Task Management{% endblock %}</title>
+  </head>
+  <body>
+    <header>
+      <h1>Task Management System</h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <!-- No link to dashboard here -->
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      {% block content %}
+      <!-- Default content can go here -->
+      {% endblock %}
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Task Management</p>
+    </footer>
+  </body>
+</html>
