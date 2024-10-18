@@ -13,16 +13,11 @@
         <ul>
           <li><a href="{% url 'register' %}">Register</a></li>
           <li><a href="{% url 'login' %}">Login</a></li>
-          <!-- No link to dashboard here -->
         </ul>
       </nav>
     </header>
 
-    <main>
-      {% block content %}
-      <!-- Default content can go here -->
-      {% endblock %}
-    </main>
+    <main>{% block content %} {% endblock %}</main>
 
     <footer>
       <p>&copy; 2024 Task Management</p>

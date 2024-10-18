@@ -25,7 +25,7 @@ class Task(models.Model):
     due_date = models.DateTimeField()
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default=MEDIUM)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=PENDING)
-    completed_at = models.DateTimeField(null=True, blank=True)  # To store the timestamp when the task is completed
+    completed_at = models.DateTimeField(null=True, blank=True)  
 
     # Relationships
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')

@@ -13,7 +13,6 @@
       <nav>
         <ul>
           <li><a href="{% url 'logout' %}">Logout</a></li>
-          <!-- You can add other links here -->
         </ul>
       </nav>
     </header>
@@ -21,7 +20,6 @@
     <main>
       <h2>Your Tasks</h2>
 
-      <!-- Button to create a new task -->
       <a href="{% url 'create_task' %}" class="btn">Create New Task</a>
 
       <ul>
@@ -33,7 +31,6 @@
           <p>Status: {{ task.status }}</p>
           <p>Priority: {{ task.priority }}</p>
 
-          <!-- Button to mark the task as completed -->
           <form
             action="{% url 'task_complete' task.id %}"
             method="POST"
@@ -43,10 +40,8 @@
             <button type="submit" class="btn">Mark as Completed</button>
           </form>
 
-          <!-- Button to update the task -->
           <a href="{% url 'update_task' task.id %}" class="btn">Update Task</a>
 
-          <!-- Button to delete the task -->
           <form
             action="{% url 'delete_task' task.id %}"
             method="POST"

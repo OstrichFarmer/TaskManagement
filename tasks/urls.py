@@ -28,7 +28,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path('', base_view, name='base'),  # Home page
+    path('', base_view, name='base'),  
     path('dashboard/', dashboard_view, name='dashboard'),
     path('create-task/', create_task_view, name='create_task'),
     path('update-task/<int:task_id>/', update_task_view, name='update_task'),
@@ -36,7 +36,7 @@ urlpatterns = [
     path('complete-task/<int:task_id>/', complete_task_view, name='task_complete'),
     path('delete-task/<int:task_id>/', delete_task_view, name='delete_task'),
     path('register/', register_view, name='register'),
-    path('login/', login_view, name='login'),  # Login page
-    path('logout/', logout_view, name='logout'),  # Logout page
+    path('login/', login_view, name='login'),  
+    path('logout/', logout_view, name='logout'),  
 ]
 

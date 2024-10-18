@@ -1,29 +1,3 @@
-# from django.shortcuts import render
-# from rest_framework import viewsets, permissions
-# from django_filters.rest_framework import DjangoFilterBackend
-# from rest_framework import filters
-# from .models import Task
-# from .serializers import TaskSerializer
-
-# class TaskViewSet(viewsets.ModelViewSet):
-#     """
-#     A viewset that provides the standard actions
-#     for creating, reading, updating, and deleting tasks.
-#     """
-#     serializer_class = TaskSerializer
-#     permission_classes = [permissions.IsAuthenticated]  # Require authentication for all task actions
-#     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]  # Add filter backends
-#     filterset_fields = ['status', 'priority', 'due_date']  # Fields to filter by
-#     ordering_fields = ['due_date', 'priority']  # Fields to order by
-
-#     def get_queryset(self):
-#         # Only return tasks that belong to the currently authenticated user
-#         return Task.objects.filter(user=self.request.user)
-
-#     def perform_create(self, serializer):
-#         # Automatically associate the logged-in user with the created task
-#         serializer.save(user=self.request.user)
-
 from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework import viewsets, permissions
 from django_filters.rest_framework import DjangoFilterBackend
@@ -92,9 +66,9 @@ def create_task_view(request):
 
 
 def complete_task_view(request, task_id):
-    if request.method == 'POST':  # Ensure this view only responds to POST requests
+    if request.method == 'POST':  
         task = get_object_or_404(Task, id=task_id)
-        task.status = 'completed'  # Adjust this based on your status field
+        task.status = 'completed'  
         task.save()
         return redirect('dashboard') 
 
@@ -147,7 +121,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('dashboard')  # Redirect to dashboard after login
+            return redirect('dashboard') 
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
@@ -155,7 +129,7 @@ def login_view(request):
 # Logout View
 def logout_view(request):
     logout(request)
-    return redirect('login')  # Ensure 'login' is defined in URLs
+    return redirect('login') 
 
 # AJAX Task Creation View
 @login_required
